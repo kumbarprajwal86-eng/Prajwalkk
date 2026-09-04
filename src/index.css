@@ -1,0 +1,955 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #FF4D6D;
+    --bg-dark: #0D1117;
+    --card-dark: #161B26;
+    --text-dark: #F8FAFC;
+    --secondary-dark: #94A3B8;
+    --accent: #818CF8;
+    --success: #10B981;
+    --warning: #F59E0B;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-[#0D1117] text-[#F8FAFC] antialiased selection:bg-[#FF4D6D]/30 selection:text-white;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222838;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B4358;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(22, 27, 38, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Ripple animation effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
+/* Light Mode Overrides */
+.light, html.light body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #F8FAFC !important;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #CBD5E1 !important;
+}
+
+.light .glass-panel {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.light .bg-\[\#0D1117\],
+.light [class*="bg-[#0D1117]"],
+.light [class*="bg-black/30"] {
+  background-color: #F8FAFC !important;
+}
+
+.light .bg-\[\#0D1117\]\/90,
+.light .bg-\[\#0D1117\]\/95,
+.light [class*="bg-[#0D1117]/"] {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+.light .bg-\[\#161B26\],
+.light [class*="bg-[#161B26]"],
+.light [class*="bg-black/20"],
+.light [class*="bg-black/40"],
+.light [class*="bg-black/60"],
+.light [class*="bg-white/5"],
+.light [class*="bg-white/10"],
+.light [class*="bg-white/15"],
+.light [class*="bg-white/20"] {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+  color: #0F172A !important;
+}
+
+.light .bg-\[\#10141D\],
+.light [class*="bg-[#10141D]"],
+.light [class*="bg-[#1F2633]"],
+.light [class*="bg-gray-800"],
+.light [class*="bg-gray-900"] {
+  background-color: #F1F5F9 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #0F172A !important;
+}
+
+.light [class*="text-white"],
+.light [class*="text-[#F8FAFC]"],
+.light [class*="text-gray-100"],
+.light [class*="text-gray-200"],
+.light [class*="text-gray-300"],
+.light [class*="text-slate-100"],
+.light [class*="text-slate-200"],
+.light [class*="text-slate-300"],
+.light [class*="text-zinc-100"],
+.light [class*="text-zinc-200"],
+.light [class*="text-zinc-300"] {
+  color: #0F172A !important;
+}
+
+.light [class*="text-gray-400"],
+.light [class*="text-gray-500"],
+.light [class*="text-gray-600"],
+.light [class*="text-slate-400"],
+.light [class*="text-slate-500"],
+.light [class*="text-slate-600"],
+.light [class*="text-zinc-400"],
+.light [class*="text-zinc-500"],
+.light [class*="text-zinc-600"] {
+  color: #334155 !important;
+}
+
+.light [class*="border-white"] {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Inputs, Textareas, Selects in Light mode */
+.light input,
+.light textarea,
+.light select {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Preserve white text inside filled buttons, badges, video overlays, and dark elements */
+.light [class*="bg-[#FF4D6D]"],
+.light [class*="bg-[#818CF8]"],
+.light [class*="bg-[#00C853]"],
+.light [class*="bg-[#1DA1F2]"],
+.light [class*="bg-[#4267B2]"],
+.light [class*="bg-[#EA4335]"],
+.light [class*="bg-red"],
+.light [class*="bg-blue"],
+.light [class*="bg-green"],
+.light [class*="bg-emerald"],
+.light [class*="bg-indigo"],
+.light [class*="bg-purple"],
+.light [class*="bg-black/80"],
+.light [class*="bg-black/90"],
+.light [class="bg-black"],
+.light .bg-black {
+  color: #FFFFFF !important;
+}
+
+.light [class*="bg-[#FF4D6D]"] *,
+.light [class*="bg-[#818CF8]"] *,
+.light [class*="bg-[#00C853]"] *,
+.light [class*="bg-[#1DA1F2]"] *,
+.light [class*="bg-[#4267B2]"] *,
+.light [class*="bg-[#EA4335]"] *,
+.light [class*="bg-red"] *,
+.light [class*="bg-blue"] *,
+.light [class*="bg-green"] *,
+.light [class*="bg-emerald"] *,
+.light [class*="bg-indigo"] *,
+.light [class*="bg-purple"] *,
+.light [class*="bg-black/80"] *,
+.light [class*="bg-black/90"] *,
+.light [class="bg-black"] *,
+.light .bg-black * {
+  color: #FFFFFF !important;
+}
+
+/* Light mode tinted badges and transparent hover/active states must have darker colored text, NOT white! */
+.light [class*="bg-[#FF4D6D]/"],
+.light [class*="bg-[#818CF8]/"],
+.light [class*="bg-[#FFD600]/"],
+.light [class*="bg-[#00C853]/"],
+.light [class*="bg-[#1DA1F2]/"],
+.light [class*="bg-[#4267B2]/"],
+.light [class*="bg-[#EA4335]/"] {
+  color: #0F172A !important;
+}
+
+.light [class*="bg-[#FF4D6D]/"] *,
+.light [class*="bg-[#818CF8]/"] *,
+.light [class*="bg-[#FFD600]/"] *,
+.light [class*="bg-[#00C853]/"] *,
+.light [class*="bg-[#1DA1F2]/"] *,
+.light [class*="bg-[#4267B2]/"] *,
+.light [class*="bg-[#EA4335]/"] * {
+  color: #0F172A !important;
+}
+
+/* Crisp brand text colors for light mode badges and links */
+.light [class*="text-[#FF4D6D]"],
+.light [class*="bg-[#FF4D6D]/"] [class*="text-[#FF4D6D]"] {
+  color: #E11D48 !important;
+}
+
+.light [class*="text-[#818CF8]"],
+.light [class*="bg-[#818CF8]/"] [class*="text-[#818CF8]"] {
+  color: #4F46E5 !important;
+}
+
+.light [class*="text-[#FFD600]"],
+.light [class*="bg-[#FFD600]/"] [class*="text-[#FFD600]"] {
+  color: #D97706 !important;
+}
+
+.light [class*="text-[#00C853]"],
+.light [class*="bg-[#00C853]/"] [class*="text-[#00C853]"] {
+  color: #16A34A !important;
+}
+
+.light [class*="from-[#161B26]"] {
+  --tw-gradient-from: #FFFFFF !important;
+  --tw-gradient-to: #F1F5F9 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #F8FAFC, var(--tw-gradient-to) !important;
+}
+
+/* Ambient Glow Animations & Visual Polish */
+@keyframes ambientGlowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+.animate-ambient-glow {
+  animation: ambientGlowPulse 8s ease-in-out infinite;
+}
+
+/* Glass Opacity Variants */
+.glass-high {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-medium {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-minimal {
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+}
+
+/* ==========================================================================
+   ADVANCED THEMES SUPPORT (ANTIGRAVITY, CYBERPUNK, EMERALD, MIDNIGHT, OBSIDIAN, AMETHYST, TOKYO, NORDIC, CRIMSON, ROSE)
+   ========================================================================== */
+
+/* 1. ANTIGRAVITY COSMIC THEME */
+.antigravity, html[data-theme="antigravity"] body {
+  background-color: #060913 !important;
+  color: #E2E8F0 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.12), transparent 75%),
+                    radial-gradient(circle at 100% 100%, rgba(127, 0, 255, 0.12), transparent 75%) !important;
+  background-attachment: fixed !important;
+}
+
+.antigravity ::-webkit-scrollbar-track {
+  background: #060913 !important;
+}
+
+.antigravity ::-webkit-scrollbar-thumb {
+  background: #0D1C38 !important;
+  border: 1px solid rgba(0, 242, 254, 0.4) !important;
+}
+
+.antigravity .glass-panel,
+.antigravity .bg-\[\#161B26\],
+.antigravity [class*="bg-[#161B26]"] {
+  background: rgba(13, 20, 36, 0.85) !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.15), inset 0 0 12px rgba(127, 0, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.antigravity .bg-\[\#0D1117\],
+.antigravity [class*="bg-[#0D1117]"] {
+  background-color: #060913 !important;
+}
+
+.antigravity [class*="text-[#818CF8]"] {
+  color: #00F2FE !important;
+}
+
+.antigravity [class*="text-[#FF4D6D]"] {
+  color: #38BDF8 !important;
+}
+
+.antigravity [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #00F2FE 0%, #7F00FF 100%) !important;
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.antigravity [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #7F00FF 0%, #00F2FE 100%) !important;
+  box-shadow: 0 4px 20px rgba(127, 0, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 2. TOKYO CYBER NIGHT THEME */
+.tokyo-neon, html[data-theme="tokyo-neon"] body {
+  background-color: #0A0E17 !important;
+  color: #F1F5F9 !important;
+  background-image: radial-gradient(circle at 10% 10%, rgba(0, 240, 255, 0.15), transparent 50%),
+                    radial-gradient(circle at 90% 90%, rgba(255, 0, 85, 0.12), transparent 50%) !important;
+  background-attachment: fixed !important;
+}
+
+.tokyo-neon .glass-panel,
+.tokyo-neon .bg-\[\#161B26\],
+.tokyo-neon [class*="bg-[#161B26]"] {
+  background: rgba(18, 25, 41, 0.88) !important;
+  border: 1px solid rgba(0, 240, 255, 0.35) !important;
+  box-shadow: 0 8px 32px rgba(0, 240, 255, 0.15) !important;
+}
+
+.tokyo-neon .bg-\[\#0D1117\],
+.tokyo-neon [class*="bg-[#0D1117]"] {
+  background-color: #0A0E17 !important;
+}
+
+.tokyo-neon [class*="text-[#818CF8]"] {
+  color: #00F0FF !important;
+}
+
+.tokyo-neon [class*="text-[#FF4D6D]"] {
+  color: #FF0055 !important;
+}
+
+.tokyo-neon [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #FF0055 0%, #00F0FF 100%) !important;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+/* 3. AMETHYST SUNSET THEME */
+.amethyst, html[data-theme="amethyst"] body {
+  background-color: #140824 !important;
+  color: #F3E8FF !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(157, 78, 221, 0.2), transparent 75%),
+                    radial-gradient(circle at 100% 100%, rgba(255, 0, 127, 0.15), transparent 75%) !important;
+  background-attachment: fixed !important;
+}
+
+.amethyst .glass-panel,
+.amethyst .bg-\[\#161B26\],
+.amethyst [class*="bg-[#161B26]"] {
+  background: rgba(33, 16, 56, 0.88) !important;
+  border: 1px solid rgba(199, 125, 255, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(157, 78, 221, 0.2) !important;
+}
+
+.amethyst .bg-\[\#0D1117\],
+.amethyst [class*="bg-[#0D1117]"] {
+  background-color: #140824 !important;
+}
+
+.amethyst [class*="text-[#818CF8]"] {
+  color: #C77DFF !important;
+}
+
+.amethyst [class*="text-[#FF4D6D]"] {
+  color: #FF007F !important;
+}
+
+.amethyst [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #9D4EDD 0%, #FF007F 100%) !important;
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 4. NORDIC ICE FROST THEME */
+.nordic-frost, html[data-theme="nordic-frost"] body {
+  background-color: #0A192F !important;
+  color: #E6F1FF !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(0, 180, 216, 0.15), transparent 70%) !important;
+  background-attachment: fixed !important;
+}
+
+.nordic-frost .glass-panel,
+.nordic-frost .bg-\[\#161B26\],
+.nordic-frost [class*="bg-[#161B26]"] {
+  background: rgba(17, 34, 64, 0.85) !important;
+  border: 1px solid rgba(100, 255, 218, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 180, 216, 0.12) !important;
+}
+
+.nordic-frost .bg-\[\#0D1117\],
+.nordic-frost [class*="bg-[#0D1117]"] {
+  background-color: #0A192F !important;
+}
+
+.nordic-frost [class*="text-[#818CF8]"] {
+  color: #64FFDA !important;
+}
+
+.nordic-frost [class*="text-[#FF4D6D]"] {
+  color: #00B4D8 !important;
+}
+
+.nordic-frost [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #00B4D8 0%, #64FFDA 100%) !important;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3) !important;
+  color: #0A192F !important;
+}
+
+/* 5. CRIMSON VELVET THEME */
+.crimson-velvet, html[data-theme="crimson-velvet"] body {
+  background-color: #1A080C !important;
+  color: #FFF0F3 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(230, 57, 70, 0.18), transparent 70%) !important;
+  background-attachment: fixed !important;
+}
+
+.crimson-velvet .glass-panel,
+.crimson-velvet .bg-\[\#161B26\],
+.crimson-velvet [class*="bg-[#161B26]"] {
+  background: rgba(42, 14, 20, 0.88) !important;
+  border: 1px solid rgba(230, 57, 70, 0.3) !important;
+  box-shadow: 0 8px 32px rgba(230, 57, 70, 0.15) !important;
+}
+
+.crimson-velvet .bg-\[\#0D1117\],
+.crimson-velvet [class*="bg-[#0D1117]"] {
+  background-color: #1A080C !important;
+}
+
+.crimson-velvet [class*="text-[#818CF8]"],
+.crimson-velvet [class*="text-[#FF4D6D]"] {
+  color: #E63946 !important;
+}
+
+.crimson-velvet [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #E63946 0%, #9B2226 100%) !important;
+  box-shadow: 0 4px 20px rgba(230, 57, 70, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 6. ROSE QUARTZ PASTEL THEME */
+.rose-pastel, html[data-theme="rose-pastel"] body {
+  background-color: #FFF0F5 !important;
+  color: #4A154B !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(216, 180, 248, 0.3), transparent 70%) !important;
+}
+
+.rose-pastel .glass-panel,
+.rose-pastel .bg-\[\#161B26\],
+.rose-pastel [class*="bg-[#161B26]"] {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(216, 180, 248, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(74, 21, 75, 0.06) !important;
+  color: #4A154B !important;
+}
+
+.rose-pastel .bg-\[\#0D1117\],
+.rose-pastel [class*="bg-[#0D1117]"] {
+  background-color: #FFF0F5 !important;
+}
+
+.rose-pastel [class*="text-white"],
+.rose-pastel [class*="text-[#F8FAFC]"],
+.rose-pastel [class*="text-gray-100"],
+.rose-pastel [class*="text-gray-200"],
+.rose-pastel [class*="text-gray-300"] {
+  color: #4A154B !important;
+}
+
+.rose-pastel [class*="text-gray-400"],
+.rose-pastel [class*="text-gray-500"] {
+  color: #725272 !important;
+}
+
+.rose-pastel [class*="text-[#818CF8]"] {
+  color: #8B5CF6 !important;
+}
+
+.rose-pastel [class*="text-[#FF4D6D]"] {
+  color: #E11D48 !important;
+}
+
+.rose-pastel [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3) !important;
+}
+
+/* 7. CYBERPUNK NEON THEME */
+.cyberpunk, html[data-theme="cyberpunk"] body {
+  background-color: #08080C !important;
+  color: #F8FAFC !important;
+  background-image: radial-gradient(circle at 0% 0%, rgba(255, 0, 122, 0.1), transparent 60%),
+                    radial-gradient(circle at 100% 0%, rgba(0, 240, 255, 0.1), transparent 60%) !important;
+  background-attachment: fixed !important;
+}
+
+.antigravity ::-webkit-scrollbar-track {
+  background: #060913 !important;
+}
+
+.antigravity ::-webkit-scrollbar-thumb {
+  background: #0D1C38 !important;
+  border: 1px solid rgba(0, 242, 254, 0.4) !important;
+}
+
+.antigravity .glass-panel,
+.antigravity .bg-\[\#161B26\],
+.antigravity [class*="bg-[#161B26]"] {
+  background: rgba(13, 20, 36, 0.85) !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.15), inset 0 0 12px rgba(127, 0, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.antigravity .bg-\[\#0D1117\],
+.antigravity [class*="bg-[#0D1117]"] {
+  background-color: #060913 !important;
+}
+
+.antigravity [class*="text-[#818CF8]"] {
+  color: #00F2FE !important;
+}
+
+.antigravity [class*="text-[#FF4D6D]"] {
+  color: #38BDF8 !important;
+}
+
+.antigravity [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #00F2FE 0%, #7F00FF 100%) !important;
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.antigravity [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #7F00FF 0%, #00F2FE 100%) !important;
+  box-shadow: 0 4px 20px rgba(127, 0, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 2. CYBERPUNK NEON THEME */
+.cyberpunk, html[data-theme="cyberpunk"] body {
+  background-color: #08080C !important;
+  color: #F8FAFC !important;
+  background-image: radial-gradient(circle at 0% 0%, rgba(255, 0, 122, 0.1), transparent 60%),
+                    radial-gradient(circle at 100% 0%, rgba(0, 240, 255, 0.1), transparent 60%) !important;
+  background-attachment: fixed !important;
+}
+
+.cyberpunk .glass-panel,
+.cyberpunk .bg-\[\#161B26\],
+.cyberpunk [class*="bg-[#161B26]"] {
+  background: rgba(16, 16, 26, 0.9) !important;
+  border: 1px solid rgba(255, 0, 122, 0.35) !important;
+  box-shadow: 0 8px 32px 0 rgba(255, 0, 122, 0.18) !important;
+}
+
+.cyberpunk .bg-\[\#0D1117\],
+.cyberpunk [class*="bg-[#0D1117]"] {
+  background-color: #08080C !important;
+}
+
+.cyberpunk [class*="text-[#818CF8]"] {
+  color: #00F0FF !important;
+}
+
+.cyberpunk [class*="text-[#FF4D6D]"] {
+  color: #FF007A !important;
+}
+
+.cyberpunk [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #FF007A 0%, #7928CA 100%) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 122, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+/* 3. EMERALD MATRIX THEME */
+.emerald, html[data-theme="emerald"] body {
+  background-color: #040D08 !important;
+  color: #ECFDF5 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12), transparent 75%) !important;
+  background-attachment: fixed !important;
+}
+
+.emerald .glass-panel,
+.emerald .bg-\[\#161B26\],
+.emerald [class*="bg-[#161B26]"] {
+  background: rgba(8, 26, 18, 0.88) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.15) !important;
+}
+
+.emerald .bg-\[\#0D1117\],
+.emerald [class*="bg-[#0D1117]"] {
+  background-color: #040D08 !important;
+}
+
+.emerald [class*="text-[#818CF8]"],
+.emerald [class*="text-[#FF4D6D]"] {
+  color: #10B981 !important;
+}
+
+.emerald [class*="bg-[#FF4D6D]"],
+.emerald [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 4. MIDNIGHT OCEAN SAPPHIRE THEME */
+.midnight, html[data-theme="midnight"] body {
+  background-color: #0A1128 !important;
+  color: #F1F5F9 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(58, 134, 255, 0.15), transparent 75%) !important;
+  background-attachment: fixed !important;
+}
+
+.midnight .glass-panel,
+.midnight .bg-\[\#161B26\],
+.midnight [class*="bg-[#161B26]"] {
+  background: rgba(16, 27, 61, 0.88) !important;
+  border: 1px solid rgba(58, 134, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(58, 134, 255, 0.18) !important;
+}
+
+.midnight .bg-\[\#0D1117\],
+.midnight [class*="bg-[#0D1117]"] {
+  background-color: #0A1128 !important;
+}
+
+.midnight [class*="text-[#818CF8]"] {
+  color: #38BDF8 !important;
+}
+
+.midnight [class*="text-[#FF4D6D]"] {
+  color: #3A86FF !important;
+}
+
+.midnight [class*="bg-[#FF4D6D]"],
+.midnight [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%) !important;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+/* 5. OBSIDIAN OLED THEME */
+.obsidian, html[data-theme="obsidian"] body {
+  background-color: #000000 !important;
+  color: #F8FAFC !important;
+}
+
+.obsidian .glass-panel,
+.obsidian .bg-\[\#161B26\],
+.obsidian [class*="bg-[#161B26]"] {
+  background: #0A0A0A !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+.obsidian .bg-\[\#0D1117\],
+.obsidian [class*="bg-[#0D1117]"] {
+  background-color: #000000 !important;
+}
+
+.obsidian [class*="text-[#818CF8]"] {
+  color: #E2E8F0 !important;
+}
+
+.obsidian [class*="text-[#FF4D6D]"] {
+  color: #EF4444 !important;
+}
+
+.obsidian [class*="bg-[#FF4D6D]"] {
+  background: #DC2626 !important;
+  color: #FFFFFF !important;
+}
+
+/* 6. SOLARIZED LIGHT THEME */
+.solarized-light, html[data-theme="solarized-light"] body {
+  background-color: #FDF6E3 !important;
+  color: #073642 !important;
+  background-image: none !important;
+}
+
+.solarized-light ::-webkit-scrollbar-track {
+  background: #FDF6E3 !important;
+}
+
+.solarized-light ::-webkit-scrollbar-thumb {
+  background: #EEE8D5 !important;
+  border: 1px solid #268BD2 !important;
+}
+
+.solarized-light .glass-panel,
+.solarized-light .bg-\[\#161B26\],
+.solarized-light [class*="bg-[#161B26]"] {
+  background: #EEE8D5 !important;
+  border: 1px solid rgba(38, 139, 210, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(7, 54, 66, 0.08) !important;
+}
+
+.solarized-light .bg-\[\#0D1117\],
+.solarized-light [class*="bg-[#0D1117]"] {
+  background-color: #FDF6E3 !important;
+}
+
+.solarized-light [class*="text-[#818CF8]"] {
+  color: #268BD2 !important;
+}
+
+.solarized-light [class*="text-[#FF4D6D]"] {
+  color: #D33682 !important;
+}
+
+.solarized-light [class*="bg-[#FF4D6D]"] {
+  background: #268BD2 !important;
+  color: #FDF6E3 !important;
+  box-shadow: 0 4px 15px rgba(38, 139, 210, 0.3) !important;
+}
+
+.solarized-light [class*="bg-[#818CF8]"] {
+  background: #B58900 !important;
+  color: #FDF6E3 !important;
+}
+
+.solarized-light .text-white,
+.solarized-light .text-gray-100,
+.solarized-light .text-gray-200,
+.solarized-light .text-gray-300 {
+  color: #073642 !important;
+}
+
+.solarized-light .text-gray-400,
+.solarized-light .text-gray-500 {
+  color: #586E75 !important;
+}
+
+.solarized-light .border-white\/10,
+.solarized-light .border-white\/15,
+.solarized-light .border-white\/20 {
+  border-color: rgba(7, 54, 66, 0.15) !important;
+}
+
+/* ==========================================================================
+   AVONE, WOLMART, & VEGIST THEMES
+   ========================================================================== */
+
+/* 1. AVONE MINIMALIST FASHION STUDIO THEME */
+.avone, html[data-theme="avone"] body {
+  background-color: #0F0E13 !important;
+  color: #F5F3F7 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(232, 165, 152, 0.18), transparent 70%),
+                    radial-gradient(circle at 100% 100%, rgba(224, 169, 109, 0.14), transparent 70%) !important;
+  background-attachment: fixed !important;
+}
+
+.avone ::-webkit-scrollbar-track {
+  background: #0F0E13 !important;
+}
+
+.avone ::-webkit-scrollbar-thumb {
+  background: #181620 !important;
+  border: 1px solid rgba(232, 165, 152, 0.3) !important;
+}
+
+.avone .glass-panel,
+.avone .bg-\[\#161B26\],
+.avone [class*="bg-[#161B26]"] {
+  background: rgba(24, 22, 32, 0.88) !important;
+  border: 1px solid rgba(232, 165, 152, 0.28) !important;
+  box-shadow: 0 8px 32px 0 rgba(232, 165, 152, 0.12), inset 0 0 10px rgba(224, 169, 109, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.avone .bg-\[\#0D1117\],
+.avone [class*="bg-[#0D1117]"] {
+  background-color: #0F0E13 !important;
+}
+
+.avone [class*="text-[#818CF8]"] {
+  color: #E8A598 !important;
+}
+
+.avone [class*="text-[#FF4D6D]"] {
+  color: #E0A96D !important;
+}
+
+.avone [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #E8A598 0%, #E0A96D 100%) !important;
+  box-shadow: 0 4px 20px rgba(232, 165, 152, 0.35) !important;
+  color: #0F0E13 !important;
+  font-weight: 700 !important;
+}
+
+.avone [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #E0A96D 0%, #E8A598 100%) !important;
+  box-shadow: 0 4px 20px rgba(224, 169, 109, 0.35) !important;
+  color: #0F0E13 !important;
+  font-weight: 700 !important;
+}
+
+/* 2. WOLMART MULTI-VENDOR MARKETPLACE THEME */
+.wolmart, html[data-theme="wolmart"] body {
+  background-color: #0B132B !important;
+  color: #F1F5F9 !important;
+  background-image: radial-gradient(circle at 20% 0%, rgba(58, 134, 255, 0.22), transparent 60%),
+                    radial-gradient(circle at 80% 100%, rgba(255, 183, 3, 0.18), transparent 60%) !important;
+  background-attachment: fixed !important;
+}
+
+.wolmart ::-webkit-scrollbar-track {
+  background: #0B132B !important;
+}
+
+.wolmart ::-webkit-scrollbar-thumb {
+  background: #1C2541 !important;
+  border: 1px solid rgba(58, 134, 255, 0.35) !important;
+}
+
+.wolmart .glass-panel,
+.wolmart .bg-\[\#161B26\],
+.wolmart [class*="bg-[#161B26]"] {
+  background: rgba(28, 37, 65, 0.9) !important;
+  border: 1px solid rgba(58, 134, 255, 0.35) !important;
+  box-shadow: 0 8px 32px 0 rgba(58, 134, 255, 0.18) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.wolmart .bg-\[\#0D1117\],
+.wolmart [class*="bg-[#0D1117]"] {
+  background-color: #0B132B !important;
+}
+
+.wolmart [class*="text-[#818CF8]"] {
+  color: #3A86FF !important;
+}
+
+.wolmart [class*="text-[#FF4D6D]"] {
+  color: #FFB703 !important;
+}
+
+.wolmart [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #3A86FF 0%, #FFB703 100%) !important;
+  box-shadow: 0 4px 20px rgba(58, 134, 255, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.wolmart [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #FFB703 0%, #3A86FF 100%) !important;
+  box-shadow: 0 4px 20px rgba(255, 183, 3, 0.4) !important;
+  color: #0B132B !important;
+  font-weight: 700 !important;
+}
+
+/* 3. VEGIST ORGANIC FRESH ECO THEME */
+.vegist, html[data-theme="vegist"] body {
+  background-color: #071711 !important;
+  color: #ECFDF5 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.22), transparent 70%),
+                    radial-gradient(circle at 100% 100%, rgba(132, 204, 22, 0.18), transparent 70%) !important;
+  background-attachment: fixed !important;
+}
+
+.vegist ::-webkit-scrollbar-track {
+  background: #071711 !important;
+}
+
+.vegist ::-webkit-scrollbar-thumb {
+  background: #0E291E !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+}
+
+.vegist .glass-panel,
+.vegist .bg-\[\#161B26\],
+.vegist [class*="bg-[#161B26]"] {
+  background: rgba(14, 41, 30, 0.9) !important;
+  border: 1px solid rgba(16, 185, 129, 0.32) !important;
+  box-shadow: 0 8px 32px 0 rgba(16, 185, 129, 0.16) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.vegist .bg-\[\#0D1117\],
+.vegist [class*="bg-[#0D1117]"] {
+  background-color: #071711 !important;
+}
+
+.vegist [class*="text-[#818CF8]"] {
+  color: #10B981 !important;
+}
+
+.vegist [class*="text-[#FF4D6D]"] {
+  color: #84CC16 !important;
+}
+
+.vegist [class*="bg-[#FF4D6D]"] {
+  background: linear-gradient(135deg, #10B981 0%, #84CC16 100%) !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4) !important;
+  color: #071711 !important;
+  font-weight: 700 !important;
+}
+
+.vegist [class*="bg-[#818CF8]"] {
+  background: linear-gradient(135deg, #84CC16 0%, #10B981 100%) !important;
+  box-shadow: 0 4px 20px rgba(132, 204, 22, 0.4) !important;
+  color: #071711 !important;
+  font-weight: 700 !important;
+}
+
+

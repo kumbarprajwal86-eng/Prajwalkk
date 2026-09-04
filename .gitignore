@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.viewpoint-local-db.json
+uploads/videos/*
+!uploads/videos/.gitkeep
+uploads/thumbnails/*
+!uploads/thumbnails/.gitkeep
+

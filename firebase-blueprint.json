@@ -1,0 +1,95 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and authentication details",
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "Unique user ID" },
+        "name": { "type": "string", "description": "Full name of the user" },
+        "username": { "type": "string", "description": "Unique username" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "avatar": { "type": "string", "description": "Avatar URL" },
+        "subscribersCount": { "type": "number", "description": "Number of subscribers" },
+        "verified": { "type": "boolean", "description": "Creator verified status" },
+        "role": { "type": "string", "enum": ["user", "creator", "admin"], "description": "Access control role" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of creation" }
+      },
+      "required": ["_id", "email", "name"]
+    },
+    "Video": {
+      "title": "Video",
+      "description": "Video publication data and metadata",
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "Unique video ID" },
+        "title": { "type": "string", "description": "Video title" },
+        "description": { "type": "string", "description": "Video description" },
+        "videoUrl": { "type": "string", "description": "Video source URL or stream" },
+        "thumbnailUrl": { "type": "string", "description": "Thumbnail preview URL" },
+        "duration": { "type": "number", "description": "Duration in seconds" },
+        "durationFormatted": { "type": "string", "description": "Human readable duration" },
+        "views": { "type": "number", "description": "View count" },
+        "likes": { "type": "number", "description": "Likes count" },
+        "dislikes": { "type": "number", "description": "Dislikes count" },
+        "category": { "type": "string", "description": "Video category" },
+        "tags": { "type": "array", "items": { "type": "string" }, "description": "Search tags" },
+        "isShort": { "type": "boolean", "description": "Whether video is a vertical short" },
+        "visibility": { "type": "string", "enum": ["public", "private", "unlisted"], "description": "Visibility level" },
+        "channelName": { "type": "string", "description": "Creator channel display name" },
+        "channelAvatar": { "type": "string", "description": "Creator avatar" },
+        "channelId": { "type": "string", "description": "Creator user identifier" },
+        "createdAt": { "type": "string", "description": "ISO timestamp when uploaded" }
+      },
+      "required": ["_id", "title", "videoUrl", "category", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User comments on videos",
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "Comment ID" },
+        "videoId": { "type": "string", "description": "Target video ID" },
+        "userId": { "type": "string", "description": "Author user ID" },
+        "userName": { "type": "string", "description": "Author name" },
+        "userAvatar": { "type": "string", "description": "Author avatar" },
+        "text": { "type": "string", "description": "Comment message content" },
+        "likes": { "type": "number", "description": "Like count" },
+        "createdAt": { "type": "string", "description": "Timestamp" }
+      },
+      "required": ["_id", "videoId", "text", "createdAt"]
+    },
+    "Playlist": {
+      "title": "Playlist",
+      "description": "User curated video collections",
+      "type": "object",
+      "properties": {
+        "_id": { "type": "string", "description": "Playlist ID" },
+        "userId": { "type": "string", "description": "Owner ID" },
+        "title": { "type": "string", "description": "Playlist title" },
+        "description": { "type": "string", "description": "Playlist description" },
+        "videos": { "type": "array", "items": { "type": "object" }, "description": "List of videos" },
+        "createdAt": { "type": "string", "description": "Timestamp" }
+      },
+      "required": ["_id", "userId", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile collection"
+    },
+    "/videos/{videoId}": {
+      "schema": "Video",
+      "description": "Published video items"
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Video comments"
+    },
+    "/playlists/{playlistId}": {
+      "schema": "Playlist",
+      "description": "User playlists"
+    }
+  }
+}

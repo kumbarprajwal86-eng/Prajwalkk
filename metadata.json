@@ -1,0 +1,10 @@
+{
+  "name": "View Point",
+  "description": "Modern Video Streaming Platform with YouTube-inspired design, video playback, shorts, creator studio, AI recommendations, and full backend.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "display-capture"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
